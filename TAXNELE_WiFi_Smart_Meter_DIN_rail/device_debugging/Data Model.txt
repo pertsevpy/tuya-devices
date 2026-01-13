@@ -1,0 +1,356 @@
+{
+  "result": {
+    "model": {
+      "modelId": "000004x6ux",
+      "services": [
+        {
+          "actions": [],
+          "code": "",
+          "description": "",
+          "events": [],
+          "name": "Default Service",
+          "properties": [
+            {
+              "abilityId": 1,
+              "accessMode": "ro",
+              "code": "total_forward_energy",
+              "description": "",
+              "extensions": {
+                "iconName": "icon-dp_lightning",
+                "attribute": "1152"
+              },
+              "name": "Total Forward Active Energy",
+              "typeSpec": {
+                "type": "value",
+                "max": 99999999,
+                "min": 0,
+                "scale": 2,
+                "step": 1,
+                "unit": "kW·h"
+              }
+            },
+            {
+              "abilityId": 6,
+              "accessMode": "ro",
+              "code": "phase_a",
+              "description": "1. Phase A voltage, current and power\n2. Big-endian mode, HEX format, 8 bytes total\n3. Unit precision: voltage - 2 bytes, unit 0.1V; current - 3 bytes, unit 0.001A; Phase A active power - 3 bytes, unit 0.0001kW\n4. Message format example: 08 80 00 03 E8 00 27 10 represents Phase A 217.6V, Phase A current 1.000A, Phase A power 10.000KW\n5. Communication logic:\n   1) When user enters panel, active query is initiated. Upon entering panel, panel immediately sends 0x08 to meter, meter reports data to cloud, panel receives and displays data. Note: Latest WIFI support required.\n   2) Meter reports data periodically. Recommended: In WIFI mode, report every 15 seconds. In NB mode, report every hour.",
+              "extensions": {
+                "iconName": "icon-dp_lightning",
+                "attribute": "1152"
+              },
+              "name": "Phase A Voltage, Current and Power",
+              "typeSpec": {
+                "type": "raw",
+                "maxlen": 128
+              }
+            },
+            {
+              "abilityId": 9,
+              "accessMode": "ro",
+              "code": "fault",
+              "description": "1. Alarm\n2. Big-endian mode, HEX, 4 bytes\n3. Message format:\n   Report alarms using complete 4 bytes; bit position: 1 indicates alarm present, 0 indicates no alarm; unused alarm bits filled with 0; undefined high bits also filled with 0.\n   Example: 0X00 00 00 09 indicates leakage self-test abnormal alarm and short circuit alarm present, no other alarms.\n4. Communication logic:\n   When any alarm occurs, report complete 4 bytes to panel; when any alarm clears, report complete 4 bytes to panel to update display.",
+              "extensions": {
+                "iconName": "icon-baojing",
+                "attribute": "1152"
+              },
+              "name": "Fault Alarm",
+              "typeSpec": {
+                "type": "bitmap",
+                "label": [
+                  "short_circuit_alarm",
+                  "surge_alarm",
+                  "overload_alarm",
+                  "leakagecurr_alarm",
+                  "temp_dif_fault",
+                  "fire_alarm",
+                  "high_power_alarm",
+                  "self_test_alarm",
+                  "ov_cr",
+                  "unbalance_alarm",
+                  "ov_vol",
+                  "undervoltage_alarm",
+                  "miss_phase_alarm",
+                  "outage_alarm",
+                  "magnetism_alarm",
+                  "credit_alarm",
+                  "no_balance_alarm"
+                ],
+                "maxlen": 17
+              }
+            },
+            {
+              "abilityId": 11,
+              "accessMode": "rw",
+              "code": "switch_prepayment",
+              "description": "",
+              "extensions": {
+                "iconName": "icon-dp_money",
+                "attribute": "1152"
+              },
+              "name": "Prepaid Function Switch",
+              "typeSpec": {
+                "type": "bool"
+              }
+            },
+            {
+              "abilityId": 12,
+              "accessMode": "rw",
+              "code": "clear_energy",
+              "description": "",
+              "extensions": {
+                "iconName": "icon-dp_lightning",
+                "attribute": "1152"
+              },
+              "name": "Clear Remaining Available Energy",
+              "typeSpec": {
+                "type": "bool"
+              }
+            },
+            {
+              "abilityId": 13,
+              "accessMode": "ro",
+              "code": "balance_energy",
+              "description": "",
+              "extensions": {
+                "iconName": "icon-dp_lightning",
+                "attribute": "1152"
+              },
+              "name": "Remaining Available Energy Display",
+              "typeSpec": {
+                "type": "value",
+                "max": 99999999,
+                "min": 0,
+                "scale": 2,
+                "step": 1,
+                "unit": "kW·h"
+              }
+            },
+            {
+              "abilityId": 14,
+              "accessMode": "rw",
+              "code": "charge_energy",
+              "description": "",
+              "extensions": {
+                "iconName": "icon-dp_money",
+                "attribute": "1152"
+              },
+              "name": "Energy Recharge",
+              "typeSpec": {
+                "type": "value",
+                "max": 999999,
+                "min": 0,
+                "scale": 2,
+                "step": 1,
+                "unit": "kW·h"
+              }
+            },
+            {
+              "abilityId": 15,
+              "accessMode": "ro",
+              "code": "leakage_current",
+              "description": "",
+              "extensions": {
+                "iconName": "icon-power1",
+                "attribute": "1152"
+              },
+              "name": "Residual Current Display",
+              "typeSpec": {
+                "type": "value",
+                "max": 1000,
+                "min": 0,
+                "scale": 0,
+                "step": 1,
+                "unit": "mA"
+              }
+            },
+            {
+              "abilityId": 16,
+              "accessMode": "rw",
+              "code": "switch",
+              "description": "",
+              "extensions": {
+                "iconName": "icon-dp_power2",
+                "attribute": "1152"
+              },
+              "name": "Circuit Breaker Switch",
+              "typeSpec": {
+                "type": "bool"
+              }
+            },
+            {
+              "abilityId": 17,
+              "accessMode": "rw",
+              "code": "alarm_set_1",
+              "description": "1. Alarm threshold enable control and setting 2\n2. HEX format, big-endian mode, total alarms × 4 bytes = total alarm setting length.\n3. Message format:\n   Each alarm consists of 4 bytes: 1st byte (alarm existence); 2nd byte (circuit breaker control mode when alarm occurs: 0X01 trip, 0X00 alarm only); 3rd-4th bytes: alarm threshold.\n   Example: 0X01 01 00 00 03 01 00 14 indicates circuit breaker supports short circuit alarm (trip when occurs, threshold 0), supports overload alarm (trip when occurs, threshold 20KW). No other alarms.\n4. Communication logic:\n   A. After network configuration, actively report to cloud using above format so panel knows supported alarms. If unsuccessful, reconfigure and report.\n   B. Report once when circuit breaker powers on.\n   C. Panel sends alarm settings per protocol.",
+              "extensions": {
+                "iconName": "icon-dp_warming",
+                "attribute": "1152"
+              },
+              "name": "Alarm Setting 1",
+              "typeSpec": {
+                "type": "raw",
+                "maxlen": 128
+              }
+            },
+            {
+              "abilityId": 18,
+              "accessMode": "rw",
+              "code": "alarm_set_2",
+              "description": "1. Alarm threshold enable control and setting 2\n2. HEX format, big-endian mode\n3. Message format:\n   Each alarm consists of 4 bytes: 1st byte (alarm existence); 2nd byte (circuit breaker control mode when alarm occurs: 0X01 trip, 0X00 alarm only); 3rd-4th bytes: alarm threshold.\n   Example: 0X01 01 00 3C 03 01 00 F5 indicates circuit breaker supports overcurrent alarm (trip when occurs, threshold 60A), supports overvoltage alarm (trip when occurs, threshold 245V).\n4. Communication logic:\n   A. After network configuration, actively report to cloud using above format so panel knows supported alarms. If unsuccessful, reconfigure and report.\n   B. Report once when circuit breaker powers on.\n   C. Panel sends alarm settings per protocol.",
+              "extensions": {
+                "iconName": "icon-dp_warming",
+                "attribute": "1152"
+              },
+              "name": "Alarm Setting 2",
+              "typeSpec": {
+                "type": "raw",
+                "maxlen": 128
+              }
+            },
+            {
+              "abilityId": 101,
+              "accessMode": "rw",
+              "code": "recover_sec",
+              "description": "",
+              "name": "Closing Recovery Time (Deprecated)",
+              "typeSpec": {
+                "type": "value",
+                "max": 99,
+                "min": 1,
+                "scale": 0,
+                "step": 1,
+                "unit": "seconds"
+              }
+            },
+            {
+              "abilityId": 102,
+              "accessMode": "rw",
+              "code": "recover_cnt",
+              "description": "",
+              "name": "Reclosing Allowed Count",
+              "typeSpec": {
+                "type": "value",
+                "max": 30,
+                "min": 1,
+                "scale": 0,
+                "step": 1,
+                "unit": "times"
+              }
+            },
+            {
+              "abilityId": 103,
+              "accessMode": "ro",
+              "code": "temp_current",
+              "description": "",
+              "extensions": {
+                "iconName": "icon-dp_c",
+                "attribute": "4096"
+              },
+              "name": "Current Temperature",
+              "typeSpec": {
+                "type": "value",
+                "max": 200,
+                "min": -20,
+                "scale": 0,
+                "step": 1,
+                "unit": "℃"
+              }
+            },
+            {
+              "abilityId": 104,
+              "accessMode": "rw",
+              "code": "recover_enable",
+              "description": "",
+              "name": "Reclosing Enable",
+              "typeSpec": {
+                "type": "bool"
+              }
+            },
+            {
+              "abilityId": 105,
+              "accessMode": "rw",
+              "code": "countdown_1",
+              "description": "",
+              "extensions": {
+                "iconName": "icon-dp_time2",
+                "attribute": "4096"
+              },
+              "name": "Countdown",
+              "typeSpec": {
+                "type": "value",
+                "max": 86400,
+                "min": 0,
+                "scale": 0,
+                "step": 1,
+                "unit": "s"
+              }
+            },
+            {
+              "abilityId": 106,
+              "accessMode": "rw",
+              "code": "cycle_time",
+              "description": "",
+              "extensions": {
+                "iconName": "icon-dp_time3",
+                "attribute": "4096"
+              },
+              "name": "Cycle Timer",
+              "typeSpec": {
+                "type": "string",
+                "maxlen": 255
+              }
+            },
+            {
+              "abilityId": 107,
+              "accessMode": "rw",
+              "code": "leak_delay",
+              "description": "",
+              "name": "Closing Recovery Time",
+              "typeSpec": {
+                "type": "value",
+                "max": 99,
+                "min": 1,
+                "scale": 0,
+                "step": 1,
+                "unit": "s"
+              }
+            },
+            {
+              "abilityId": 108,
+              "accessMode": "rw",
+              "code": "random_time",
+              "description": "",
+              "extensions": {
+                "iconName": "icon-dp_time2",
+                "attribute": "4096"
+              },
+              "name": "Random Timer",
+              "typeSpec": {
+                "type": "string",
+                "maxlen": 255
+              }
+            },
+            {
+              "abilityId": 109,
+              "accessMode": "rw",
+              "code": "switch_inching",
+              "description": "",
+              "extensions": {
+                "iconName": "icon-dp_power2",
+                "attribute": "4096"
+              },
+              "name": "Momentary Switch (Delayed Off)",
+              "typeSpec": {
+                "type": "string",
+                "maxlen": 255
+              }
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "success": true,
+  "t": "",
+  "tid": ""
+}

@@ -1,0 +1,33 @@
+Code	Type	Values
+switch_prepayment	Boolean	
+"{true,false}"
+clear_energy	Boolean	
+"{true,false}"
+charge_energy	Integer	
+{
+  "unit": "kW·h",
+  "min": 0,
+  "max": 999999,
+  "scale": 2,
+  "step": 1
+}
+switch	Boolean	
+"{true,false}"
+alarm_set_1	Raw	
+{}
+alarm_set_2	Raw	
+{}
+countdown_1	Integer	
+{
+  "unit": "s",
+  "min": 0,
+  "max": 86400,
+  "scale": 0,
+  "step": 1
+}
+cycle_time	String	
+{
+  "maxlen": 255
+}
+random_time	String	
+{}

@@ -1,0 +1,93 @@
+Code	Type	Values
+total_forward_energy	Integer	
+{
+  "unit": "kW·h",
+  "min": 0,
+  "max": 99999999,
+  "scale": 2,
+  "step": 1
+}
+phase_a	Raw	
+{}
+fault	Bitmap	
+{
+  "label": [
+    "short_circuit_alarm",
+    "surge_alarm",
+    "overload_alarm",
+    "leakagecurr_alarm",
+    "temp_dif_fault",
+    "fire_alarm",
+    "high_power_alarm",
+    "self_test_alarm",
+    "ov_cr",
+    "unbalance_alarm",
+    "ov_vol",
+    "undervoltage_alarm",
+    "miss_phase_alarm",
+    "outage_alarm",
+    "magnetism_alarm",
+    "credit_alarm",
+    "no_balance_alarm"
+  ]
+}
+switch_prepayment	Boolean	
+"{true,false}"
+energy_reset	Enum	
+{
+  "range": [
+    "empty"
+  ]
+}
+balance_energy	Integer	
+{
+  "unit": "kW·h",
+  "min": 0,
+  "max": 99999999,
+  "scale": 2,
+  "step": 1
+}
+charge_energy	Integer	
+{
+  "unit": "kW·h",
+  "min": 0,
+  "max": 999999,
+  "scale": 2,
+  "step": 1
+}
+leakage_current	Integer	
+{
+  "unit": "mA",
+  "min": 0,
+  "max": 1000,
+  "scale": 0,
+  "step": 1
+}
+switch	Boolean	
+"{true,false}"
+alarm_set_1	Raw	
+{}
+alarm_set_2	Raw	
+{}
+temp_current	Integer	
+{
+  "unit": "℃",
+  "min": -20,
+  "max": 200,
+  "scale": 0,
+  "step": 1
+}
+countdown_1	Integer	
+{
+  "unit": "s",
+  "min": 0,
+  "max": 86400,
+  "scale": 0,
+  "step": 1
+}
+cycle_time	String	
+{
+  "maxlen": 255
+}
+random_time	String	
+{}
